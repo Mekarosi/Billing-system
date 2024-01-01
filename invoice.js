@@ -92,7 +92,7 @@ function printInvoice(){
     const invoiceDate = $("#invoiceDate").val()
     const items = []
 
-    $("tr[id^'itemRow']").each(function(){
+    $("tr[id^='itemRow']").each(function(){
         const description = $(this).find("td:eq(0) input").val()
         const quantity = $(this).find("td:eq(1) input").val()
         const unitPrice = $(this).find("td:eq(2) input").val()
@@ -158,7 +158,7 @@ function printInvoice(){
                         <td>${Item.description}</td>
                         <td>${Item.quantity}</td>
                         <td>${Item.unitPrice}</td>
-                        <td>${Item.totalItem}</td>
+                        <td>${Item.totalItemPrice}</td>
                     </tr>
                     `
                 )
@@ -170,5 +170,10 @@ function printInvoice(){
     </body>
     </html>
     `
+const printWindow = window.open("", "_blank")
+printWindow.document.write(invoiceContent)
+printWindow.document.close()
+printWindow.print()
+
 }
 
