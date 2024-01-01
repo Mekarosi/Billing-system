@@ -48,7 +48,7 @@ function addInvoiceItem() {
         </td>
     `
     $("#invoiceItems").append(newItemRow)
-
+//update total amount on every item added
     updateTotalAmount()
 }
 
@@ -60,7 +60,7 @@ function removeInvoiceItem(itemId){
 function updateTotalAmount(){
   let totalAmount = 0
 
-  $("tr[id^=itemRow]").each(function(){
+  $("tr[id^='itemRow']").each(function(){
     const quantity = parseFloat($(this).find(".quantity").val()) || 0
     const unitPrice = parseFloat($(this).find(".unitPrice").val()) || 0
     const totalItemPrice = quantity * unitPrice
@@ -71,3 +71,11 @@ function updateTotalAmount(){
 
 $("#totalAmount").val(totalAmount.toFixed(2))
 }
+
+
+// automatic set current date for invoice date
+$(document).ready(function (){
+    const currentDate = new Date()
+    const formattedDate = currentDate.toISOString().slice(0, 10)
+    $("#invoiceDate").val(formattedDate)
+})
