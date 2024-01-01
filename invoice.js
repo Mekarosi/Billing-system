@@ -65,7 +65,7 @@ function updateTotalAmount(){
     const unitPrice = parseFloat($(this).find(".unitPrice").val()) || 0
     const totalItemPrice = quantity * unitPrice
 
-    $(this).find("totalItemPrice").val(totalItemPrice.toFixed(2))
+    $(this).find(".totalItemPrice").val(totalItemPrice.toFixed(2))
    totalAmount += totalItemPrice
 })
 
@@ -79,3 +79,36 @@ $(document).ready(function (){
     const formattedDate = currentDate.toISOString().slice(0, 10)
     $("#invoiceDate").val(formattedDate)
 })
+
+$("#invoiceForm").submit(function(event){
+    event.preventDefault()
+    updateTotalAmount()
+})
+
+// print Bill Invoice
+
+function printInvoice(){
+    const customerName = $("#customerName").val()
+    const invoiceDate = $("#invoiceDate").val()
+    const items = []
+
+    $("tr[id^'itemRow']").each(function(){
+        const description = $(this).find("td:eq(0) input").val()
+        const quantity = $(this).find("td:eq(1) input").val()
+        const unitPrice = $(this).find("td:eq(2) input").val()
+        const totalItemPrice = $(this).find("td:eq(3) input").val()
+
+        items.push({
+            description: description,
+            quantity: quantity,
+            unitPrice: unitPrice,
+            totalItemPrice: totalItemPrice
+
+        })
+    })
+
+    const totalAmount = $("#totalAmount").val()
+
+    const invoiceContent = ``
+}
+
