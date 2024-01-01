@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(15, 9, 9);
+}
+
+.container {
+    background-color: rgb(246, 246, 241);
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 80px;
+}
+
+h2 {
+    color: rgb(157, 157, 246);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 800;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+#totalAmount {
+    font-weight: bold;
+    font-size: 18px;
+}
