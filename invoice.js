@@ -109,6 +109,66 @@ function printInvoice(){
 
     const totalAmount = $("#totalAmount").val()
 
-    const invoiceContent = ``
+    const invoiceContent = `
+    <html>
+    <head>  
+        <title>Invoice Slip</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 20px;
+            }
+            h2 {
+                color: rgb(130, 130, 207);
+            }   
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th,
+            td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            .total {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Invoice Slip</h2>
+        <p><strong>Customer Name:</strong>${customerName}</p>
+        <p><strong>Date and Time:</strong>${invoiceDate}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${items
+                    .map(
+                        (Item) => `
+                    <tr>
+                        <td>${Item.description}</td>
+                        <td>${Item.quantity}</td>
+                        <td>${Item.unitPrice}</td>
+                        <td>${Item.totalItem}</td>
+                    </tr>
+                    `
+                )
+                .join("")}
+            </tbody>
+        </table>
+    
+        <p class="total">Total Amount: ${totalAmount}</p>
+    </body>
+    </html>
+    `
 }
 
