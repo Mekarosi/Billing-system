@@ -32,7 +32,7 @@ function addInvoiceItem() {
         <td>
             <input
               type="text"
-              class="form-control totalItem"
+              class="form-control totalItemPrice"
               disabled
               readonly
             >
@@ -55,4 +55,19 @@ function addInvoiceItem() {
 function removeInvoiceItem(itemId){
     $(`#itemRow${itemId}`).remove()
     updateTotalAmount()
+}
+
+function updateTotalAmount(){
+  let totalAmount = 0
+
+  $("tr[id^=itemRow]").each(function(){
+    const quantity = parseFloat($(this).find(".quantity").val()) || 0
+    const unitPrice = parseFloat($(this).find(".unitPrice").val()) || 0
+    const totalItemPrice = quantity * unitPrice
+
+    $(this).find("totalItemPrice").val(totalItemPrice.toFixed(2))
+   totalAmount += totalItemPrice
+})
+
+$("#totalAmount").val(totalAmount.toFixed(2))
 }
