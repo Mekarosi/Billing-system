@@ -48,5 +48,11 @@ function addInvoiceItem() {
         </td>
     `
     $("#invoiceItems").append(newItemRow)
+
+    updateTotalAmount()
+}
+
+function removeInvoiceItem(itemId){
+    $(`#itemRow${itemId}`).remove()
     updateTotalAmount()
 }
